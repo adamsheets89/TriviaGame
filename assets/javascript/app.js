@@ -12,60 +12,53 @@ window.onload = function () {
 
 //variables for scoreboard
 
-$("#display").text("5")
+$("#display").text("10")
 //variable for timer
-var number = 5;
+var number = 10;
+
+var images = []
 
 //correct, incorrect, unanswered 
-var totalCorrect;
-var totalIncorrect;
-var totalUnanswered;
+var totalCorrect = 0;
+var totalIncorrect = 0;
+var totalUnanswered = 0;
 
 //object to hold multiple choice questions
 var multipleChoice = [
     {
-        question: "How many Americans died of drug overdose in 2016?",
+        question: "How many Americans died of <br>drug overdose in 2016?",
         answers: {
             a: "13,740",
             b: "52,404",
             c: "9,498"
         },
-        correctAnswer: "52,404"
+        correctAnswer: "52,404."
     },
     {
-        question: "Opioids were involved in how many of all drug overdoses in 2016?",
+        question: "What percentage of drug overdoses <br> in America were associated with Opioids<br> inn 2016?",
         answers: {
             a: "Less than 15%",
-            b: "35%",
+            b: "Approximately 35%",
             c: "Over 60%"
         },
-        correctAnswer: "Over 60%"
+        correctAnswer: "Over 60%."
     },
     {
-        question: "How many drug overdoses in 2016 resulted from marijuana?",
+        question: "What percentage of drug overdoses in <br>2016 resulted from marijuana?",
         answers: {
-            a: "None",
+            a: "0%",
             b: "Over 80%",
-            c: "It doesn't matter, marijuana is evil!"
+            c: "Nearly 30%"
         },
-        correctAnswer: "None!"
+        correctAnswer: "0%."
     }, {
-        question: "The American Pharmaceutical Industry spent how much in lobbying Congress in 2016?",
+        question: "The American Pharmaceutical Industry <br>spent how much lobbying Congress <br> in 2016?",
         answers: {
             a: "$2,500,000",
             b: "$37,900",
             c: "$152,000,000"
         },
-        correctAnswer: "#152,000,000"
-    },
-    {
-        question: "Question 5?",
-        answers: {
-            a: "This",
-            b: "That",
-            c: "Other"
-        },
-        correctAnswer: "a"
+        correctAnswer: "$152,000,000."
     },
 ];
 
@@ -78,10 +71,11 @@ var incorrectAnswers;
 //variable to hold userChoices
 var userChoice;
 
-var correctUser;
-var incorrectUser;
-
-var button;
+// var correctUser = 0;
+// var incorrectUser = 0;
+// var unanswered = 0;
+var user;
+// var button;
 
 //variable to hold setINterval to run clock
 var intervalId;
@@ -102,85 +96,174 @@ function startGame() {
     // console.log("the answer is " + multipleChoice[0].answers.b)
 
     // if ($("#start").on("click", youWin))
-// for (var i = 0; i < multipleChoice.length; i++) {
-// + "<h1>" + multipleChoice[i].answers.a +
-//     "<h1>" + multipleChoice[i].answers.b + "<h1>" + multipleChoice[i].answers.c)
-// console.log(multipleChoice[i].question)
-// }
+    // for (var i = 0; i < multipleChoice.length; i++) {
+    // + "<h1>" + multipleChoice[i].answers.a +
+    //     "<h1>" + multipleChoice[i].answers.b + "<h1>" + multipleChoice[i].answers.c)
+    // console.log(multipleChoice[i].question)
+    // }
 
-//
+    //
 
 }
 
+
+function correctChoiceOne() {
+    $("#display").hide();
+    $(".answer").hide();
+    $("#question").html("<h1> Correct! The answer is " + multipleChoice[0].correctAnswer);
+    setTimeout(secondQuestion, 1000 * 5);
+    console.log("Correct Choice =" + totalCorrect);
+}
+
+function correctChoiceTwo() {
+    $("#display").hide();
+    $(".answer").hide();
+    $("#question").html("<h1> Correct! The answer is " + multipleChoice[1].correctAnswer);
+    setTimeout(thirdQuestion, 1000 * 5);
+    console.log("Correct Choice =" + totalCorrect);
+}
+function correctChoiceThree() {
+    $("#display").hide();
+    $(".answer").hide();
+    $("#question").html("<h1> Correct! The answer is " + multipleChoice[2].correctAnswer);
+    setTimeout(fourthQuestion, 1000 * 5);
+    console.log("Correct Choice =" + totalCorrect);
+}
+
+function correctChoiceFour() {
+    $("#display").hide();
+    $(".answer").hide();
+    $("#question").html("<h1> Correct! The answer is " + multipleChoice[3].correctAnswer);
+    setTimeout(endQuiz, 1000 * 5);
+    console.log("Correct Choice =" + totalCorrect);
+}
+
+
+
+function wrongChoiceOne() {
+    $("#display").hide();
+    $(".answer").hide();
+    $("#question").html("<h1> Wrong! The answer is " + multipleChoice[0].correctAnswer);
+    setTimeout(secondQuestion, 1000 * 5);
+    console.log("Correct Choice =" + totalIncorrect);
+}
+
+function wrongChoiceTwo() {
+    $("#display").hide();
+    $(".answer").hide();
+    $("#question").html("<h1> Wrong! The answer is " + multipleChoice[1].correctAnswer);
+    setTimeout(thirdQuestion, 1000 * 5);
+    console.log("Correct Choice =" + totalIncorrect);
+}
+
+function wrongChoiceThree() {
+    $("#display").hide();
+    $(".answer").hide();
+    $("#question").html("<h1> Wrong! The answer is " + multipleChoice[2].correctAnswer);
+    setTimeout(fourthQuestion, 1000 * 5);
+    console.log("Correct Choice =" + totalIncorrect);
+}
+
+function wrongChoiceFour() {
+    $("#display").hide();
+    $(".answer").hide();
+    $("#question").html("<h1> Wrong! The answer is " + multipleChoice[3].correctAnswer);
+    setTimeout(endQuiz, 1000 * 5);
+    console.log("Correct Choice =" + totalIncorrect);
+}
+
+
 function secondQuestion() {
-    number = 5;
-    intervalId = setInterval(decrementTwo, 1000);
+    clearInterval(intervalId);
     $("#display").show();
     $(".answer").show();
-    $("#display").text("5");
     $(".answer").text("");
     $("#question").text("");
+    $("#display").text("10");
+    number = 10;
+    intervalId = setInterval(decrementTwo, 1000);
     $("#question").append("<h1>" + multipleChoice[1].question);
     $("#a").append(multipleChoice[1].answers.a);
     $("#b").append(multipleChoice[1].answers.b);
     $("#c").append(multipleChoice[1].answers.c);
 
-    console.log(multipleChoice[1].question)
-    console.log("the answer is " + multipleChoice[1].answers.a)
 }
 
 function thirdQuestion() {
-    number = 5;
-    intervalId = setInterval(decrementThree, 1000);
+    clearInterval(intervalId);
     $("#display").show();
-    $(".answer").show();
-    $("#display").text("5");
+    $(".answer").show();    
     $(".answer").text("");
     $("#question").text("");
+    $("#display").text("10");
+    number = 10;
+    intervalId = setInterval(decrementThree, 1000);
     $("#question").append("<h1>" + multipleChoice[2].question);
     $("#a").append(multipleChoice[2].answers.a);
     $("#b").append(multipleChoice[2].answers.b);
     $("#c").append(multipleChoice[2].answers.c);
 
-    console.log(multipleChoice[2].question)
-    console.log("the answer is " + multipleChoice[2].answers.a)
 }
 
 function fourthQuestion() {
-    number = 5;
-    intervalId = setInterval(decrementFour, 1000);
+    clearInterval(intervalId);
     $("#display").show();
     $(".answer").show();
-    $("#display").text("5");
     $(".answer").text("");
     $("#question").text("");
+    $("#display").text("10");
+    number = 10;
+    intervalId = setInterval(decrementFour, 1000);
     $("#question").append("<h1>" + multipleChoice[3].question);
     $("#a").append(multipleChoice[3].answers.a);
     $("#b").append(multipleChoice[3].answers.b);
     $("#c").append(multipleChoice[3].answers.c);
 
-    console.log(multipleChoice[3].question)
-    console.log("the answer is " + multipleChoice[3].answers.a)
 }
-
-
-// $("#start").click(function () {
-//     $("#start").hide();
-// })
 
 function decrement() {
     number--;
     $("#display").html(number);
+    $(".answer").on("click", function () {
+
+        if ($(document).on("click", "#b", correctChoiceOne))
+        totalCorrect++;
+    });
+    $(".answer").on("click", function () {
+        if ($(document).on("click", "#a", wrongChoiceOne))
+        totalIncorrect++;
+    });
+    $(".answer").on("click", function () {
+        if ($(document).on("click", "#c", wrongChoiceOne))
+        totalIncorrect++;
+    });
     if (number === 0) {
+        totalUnanswered++;
         stop()
+        console.log(totalUnanswered)
     }
 }
 
 function decrementTwo() {
     number--;
     $("#display").html(number);
+    $(".answer").on("click", function () {
+
+        if ($(document).on("click", "#c", correctChoiceTwo))
+        totalCorrect++;
+    });
+    $(".answer").on("click", function () {
+        if ($(document).on("click", "#a", wrongChoiceTwo))
+        totalIncorrect++;
+    });
+    $(".answer").on("click", function () {
+        if ($(document).on("click", "#b", wrongChoiceTwo))
+        totalIncorrect++;
+    });
     if (number === 0) {
+        totalUnanswered++;
         stopTwo()
+        console.log(totalUnanswered)
 
     }
 }
@@ -188,8 +271,23 @@ function decrementTwo() {
 function decrementThree() {
     number--;
     $("#display").html(number);
+    $(".answer").on("click", function () {
+
+        if ($(document).on("click", "#a", correctChoiceThree))
+        totalCorrect++;
+    });
+    $(".answer").on("click", function () {
+        if ($(document).on("click", "#b", wrongChoiceThree))
+        totalIncorrect++;
+    });
+    $(".answer").on("click", function () {
+        if ($(document).on("click", "#c", wrongChoiceThree))
+        totalIncorrect++;
+    });
     if (number === 0) {
+        totalUnanswered++;
         stopThree()
+        console.log(totalUnanswered)
 
     }
 }
@@ -197,95 +295,81 @@ function decrementThree() {
 function decrementFour() {
     number--;
     $("#display").html(number);
+    $(".answer").on("click", function () {
+
+        if ($(document).on("click", "#c", correctChoiceFour))
+        totalCorrect++;
+    });
+    $(".answer").on("click", function () {
+        if ($(document).on("click", "#a", wrongChoiceFour))
+        totalIncorrect++;
+    });
+    $(".answer").on("click", function () {
+        if ($(document).on("click", "#b", wrongChoiceFour))
+        totalIncorrect++;
+    });
     if (number === 0) {
+        totalUnanswered++;
         stopFour()
+        console.log(totalUnanswered)
 
     }
 }
-
-// function decrementTwo() {
-
-
-//      $("#display").html(number);
-// }
-
-//function to stop timer
 
 function stop() {
     clearInterval(intervalId);
     $("#display").hide();
     $(".answer").hide();
-    breakPage()
+    $("#question").html("<h1> Time's Up! <br>" + "<h2> The correct answer is " + multipleChoice[0].correctAnswer);
+    setTimeout(secondQuestion, 1000 * 3);
 }
 
 function stopTwo() {
     clearInterval(intervalId);
     $("#display").hide();
     $(".answer").hide();
-    breakPageTwo()
+    $("#question").html("<h1> Time's Up! <br>" + "<h2> The correct answer is " + multipleChoice[1].correctAnswer);
+    setTimeout(thirdQuestion, 1000 * 3);
 }
 
 function stopThree() {
     clearInterval(intervalId);
     $("#display").hide();
     $(".answer").hide();
-    breakPageThree()
+    $("#question").html("<h1> Time's Up! <br>" + "<h2> The correct answer is " + multipleChoice[2].correctAnswer);
+    setTimeout(fourthQuestion, 1000 * 3);
 }
 
 function stopFour() {
     clearInterval(intervalId);
     $("#display").hide();
     $(".answer").hide();
-    breakPageFour()
+    $("#question").html("<h1> Time's Up! <br>" + "<h2> The correct answer is " + multipleChoice[3].correctAnswer);
+    setTimeout(endQuiz, 1000 * 3);
 }
 
 
-function breakPage() {
-    $("#question").html("<h1> Time's Up! <br>" + "<h2> The correct answer is: " + multipleChoice[0].correctAnswer);
-    setTimeout(secondQuestion, 1000 * 3);
+function endQuiz() {
+    clearInterval(intervalId)
+    $("#display").hide();
+    $(".answer").show();
+    $(".answer").text("");
+    $("#question").text("");
+    $("#question").html("<h1> Let's see how you did!");
+    $("#scoreboard").html("<h2> Correct Answers: " + totalCorrect + "<br>" + "<h2> Incorrect Answers: " + totalIncorrect + "<br>" + "<h2> Unanswered: " + totalUnanswered + "<br>");
+    $("#start").show();
+    $("#start").html("<h2> Restart? </h2>");
+    $("#start").on("click", restartGame);
+    $("#start").click(function () {
+        $("#start").hide();
+
+    })
 }
 
-function breakPageTwo() {
-    $("#question").html("<h1> Time's Up! <br>" + "<h2> The correct answer is: " + multipleChoice[1].correctAnswer);
-    setTimeout(thirdQuestion, 1000 * 3);
+function restartGame () {
+    location.reload();
 }
 
-function breakPageThree() {
-    $("#question").html("<h1> Time's Up! <br>" + "<h2> The correct answer is: " + multipleChoice[2].correctAnswer);
-    setTimeout(fourthQuestion, 1000 * 3);
+function clickable() {
+    $(".answers").on("click ")
 }
-
-function breakpageFour() {
-    $("#question").html("<h1> Time's Up! <br>" + "<h2> The correct answer is: " + multipleChoice[3].correctAnswer);
-    setTimeout(endGame, 1000 * 3);
-}
-
-function endGame (){
-    
-}
-
-//function to switch timer for new question
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function youWin() {
-//     $("#display").hide();
-//     $("#question").text("Correct!")
-
-// }
-
-//timecounter at top of page
-

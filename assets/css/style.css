@@ -1,0 +1,29 @@
+button.answer {
+    background: none;
+    border: none;
+    background-color: white;
+}
+
+#a {
+    margin: 10px;
+}
+
+#b {
+    margin: 10px;
+}
+
+#c {
+    margin: 10px;
+}
+
+body {
+    background-image: url(https://7za55f3mmw-flywheel.netdna-ssl.com/wp-content/uploads/2014/04/money-stacks-png.jpg)
+}
+
+#display {
+    font-size: 30px;
+}
+
+.answer {
+    font-size: 24px;
+}
